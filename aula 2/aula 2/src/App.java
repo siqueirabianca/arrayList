@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
+
     static List<Aluno> alunos = new ArrayList<>();
+
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Integer opcao = 0;
-        while(opcao != 6){
-            
-            System.out.println("Este é um CRUD de alunos! Digite 1 para cadastrar\nDigite 2 para mostrar"); 
+        while (opcao != 6) {
+
+            System.out.println("Este é um CRUD de alunos! Digite 1 para cadastrar\nDigite 2 para mostrar\n Digite 3 para deletar\n Digite 4 para editar"); 
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
@@ -26,13 +28,19 @@ public class App {
                     Integer id = sc.nextInt();
                     deletar(id);
                     break;
+                case 4:
+                    mostrar();
+                    System.out.println("Digite o id a ser editado: ");
+                    Integer id2 = sc.nextInt();
+                    editar(id2);
+                    break;
             }
         }
     }
 
-    public static void cadastrar(){
+    public static void cadastrar() {
         Scanner sc = new Scanner(System.in);
-        Aluno aluno = new Aluno();  
+        Aluno aluno = new Aluno();
         System.out.println("Digite o nome do aluno: ");
         aluno.setNome(sc.nextLine());
         System.out.println("Digite o curso do aluno: ");
@@ -44,19 +52,19 @@ public class App {
         alunos.add(aluno);
     }
 
-    public static void mostrar(){
-        for(int i = 0; i < alunos.size(); i++){
+    public static void mostrar() {
+        for (int i = 0; i < alunos.size(); i++) {
             Aluno aluno = alunos.get(i);
-            System.out.println("Id: "+i);
-            System.out.println("Nome: "+aluno.getNome());
-            System.out.println("Turma: "+aluno.getTurma());
-            System.out.println("Idade: "+aluno.getIdade());
-            System.out.println("Curso: "+aluno.getCurso());
+            System.out.println("Id: " + i);
+            System.out.println("Nome: " + aluno.getNome());
+            System.out.println("Turma: " + aluno.getTurma());
+            System.out.println("Idade: " + aluno.getIdade());
+            System.out.println("Curso: " + aluno.getCurso());
             System.out.println("----------------------------------");
         }
     }
 
-    public static void deletar(Integer id){
+    public static void deletar(Integer id) {
         Aluno aluno = alunos.get(id);
         alunos.remove(aluno);
     }
